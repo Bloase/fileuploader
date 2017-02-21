@@ -3,6 +3,7 @@
     outline: dotted 3px #ccc;
     cursor: pointer;
     height: 100%;
+    overflow-y: auto;
 }
 
 .uploaderWithoutFile {
