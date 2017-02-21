@@ -122,6 +122,7 @@ export class UploaderComponent {
 
     cleanFiles() {
         this.input.nativeElement.value = '';
+        this.files = [];
     }
 
     handleInvoiceLoad(files: any) {
