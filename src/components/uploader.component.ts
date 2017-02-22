@@ -215,4 +215,13 @@ export class UploaderComponent {
         return reader.readAsDataURL(file);
     }
 
+    hasFiles() {
+        if(this.multiple) {
+            return this.files.length > 0;
+        }
+        else {
+            return this.mFile ? true : false;
+        }
+    }
+
 }
