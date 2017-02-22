@@ -23,6 +23,7 @@ export class UploaderComponent {
 
     dragging: boolean = false;
     public files: File[] = [];
+    public mFile: File = null;
     public imgSrc: string = '';
     public jszip = new JSZip();
     failed = new Array<String>();
@@ -99,8 +100,7 @@ export class UploaderComponent {
                 return;
             }
         }
-        this.files = [];
-        this.files.push(file);
+        this.mFile = file;
     }
 
     loadMultiple(files: any) {
@@ -208,6 +208,11 @@ export class UploaderComponent {
 
     setStyles() {
         return this.looks;
+    }
+
+    getBase64(file: File) {
+        let reader = new FileReader();
+        return reader.readAsDataURL(file);
     }
 
 }
