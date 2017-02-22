@@ -140,7 +140,7 @@ export class UploaderComponent {
 
                 if (this.handleExtension(file) == 0) {
                     this.files.push(file);
-                } else if (this.handleExtension(file) == 2) {
+                } else if (this.handleExtension(file) == 1) {
                     this.jszip.loadAsync(file)
                         .then((configZip: any) => {
                             configZip.forEach((filePath: string, file: JSZipObject) => {
