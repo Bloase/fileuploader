@@ -18,12 +18,14 @@ export class UploaderComponent {
     @Input() maxSize: number = 0;
     @Input() looks: any;
     @Input() multiple: boolean = true;
+    @Input() encode: boolean = false;
     @Output() results: EventEmitter<any> = new EventEmitter();
     @Output() fail: EventEmitter<any> = new EventEmitter();
 
     dragging: boolean = false;
     public files: File[] = [];
     public mFile: File = null;
+    public encoded: string[] = [];
     public imgSrc: string = '';
     public jszip = new JSZip();
     failed = new Array<String>();
@@ -101,6 +103,9 @@ export class UploaderComponent {
             }
         }
         this.mFile = file;
+        if(this.encode) {
+            this.getBase64(file);
+        }
     }
 
     loadMultiple(files: any) {
@@ -116,6 +121,9 @@ export class UploaderComponent {
                     }
                 }
                 this.files.push(file);
+                if(this.encode) {
+                    this.getBase64(file);
+                }
             }
         }
     }
@@ -140,6 +148,9 @@ export class UploaderComponent {
 
                 if (this.handleExtension(file) == 0) {
                     this.files.push(file);
+                    if(this.encode) {
+                        this.getBase64(file);
+                    }
                 } else if (this.handleExtension(file) == 1) {
                     this.jszip.loadAsync(file)
                         .then((configZip: any) => {
@@ -150,6 +161,9 @@ export class UploaderComponent {
                                         file.async("blob").then((content: Blob) => {
                                             let f = new File([content], filename);
                                             this.files.push(f);
+                                            if(this.encode) {
+                                                this.getBase64(f);
+                                            }
                                         });
                                     }
                                 }
@@ -210,14 +224,10 @@ export class UploaderComponent {
         return this.looks;
     }
 
-    getBase64(file: File): string {
+    getBase64(file: File){
         let reader = new FileReader();
-        let str: string;
-        reader.onloadend = (e) => {
-            str = reader.result;
-        }
+        reader.onload = this.convertbase64.bind(this);
         reader.readAsDataURL(file);
-        return str;
     }
 
     hasFiles() {
@@ -226,6 +236,16 @@ export class UploaderComponent {
         }
         else {
             return this.mFile ? true : false;
+        }
+    }
+    
+    convertbase64(e: any) {
+        let reader = e.target;
+        if(this.multiple) {
+            this.encoded.push(reader.results);
+        } else {
+            this.encoded = [];
+            this.encoded.push(reader.results);
         }
     }
 
