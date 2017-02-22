@@ -242,10 +242,10 @@ export class UploaderComponent {
     convertbase64(e: any) {
         let reader = e.target;
         if(this.multiple) {
-            this.encoded.push(reader.results);
+            this.encoded.push(reader.result);
         } else {
             this.encoded = [];
-            this.encoded.push(reader.results);
+            this.encoded.push(reader.result);
         }
     }
 
