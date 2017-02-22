@@ -210,9 +210,14 @@ export class UploaderComponent {
         return this.looks;
     }
 
-    getBase64(file: File) {
+    getBase64(file: File): string {
         let reader = new FileReader();
-        return reader.readAsDataURL(file);
+        let str: string;
+        reader.onloadend = (e) => {
+            str = reader.result;
+        }
+        reader.readAsDataURL(file);
+        return str;
     }
 
     hasFiles() {
