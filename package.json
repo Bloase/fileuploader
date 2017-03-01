@@ -1,10 +1,12 @@
 {
   "name": "fileuploader",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "An angular2 component for files upload",
   "scripts": {
     "tsc": "tsc"
   },
+  "main": "dist/fileuploader.js",
+  "typings": "dist/fileuploader.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/Bloase/fileuploader.git"
