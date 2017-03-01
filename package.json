@@ -1,9 +1,9 @@
 {
   "name": "fileuploader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An angular2 component for files upload",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc && cp src/components/uploader.html dist/components && cp src/components/uploader.css dist/components"
   },
   "main": "dist/fileuploader.js",
   "typings": "dist/fileuploader.d.ts",
