@@ -1,0 +1,10 @@
+# typings
+typings
+
+# typescript sources
+*.ts
+*.js.map
+!*.d.ts
+
+# source files
+src
