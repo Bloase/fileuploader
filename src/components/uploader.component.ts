@@ -6,8 +6,31 @@ import * as JSZip from 'jszip';
 
 @Component({
     selector: 'uploader',
-    templateUrl: 'uploader.html',
-    styleUrls: ['uploader.css']
+    styles: [`
+        .uploadContainer {
+            background: #F9F9F9;
+            outline: dotted 3px #ccc;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .uploaderWithoutFile {
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+        .uploaderWithFile {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    `],
+    template:`
+    <div class="uploadContainer" [style.outlineColor]="dragging ? 'red' : '#ccc'" fileDropDirective (fileOver)="handleFileOver($event)" (onFileDrop)="handleFileLoad($event)" [ngStyle]="setStyles()">
+        <input type="file" #input [hidden]="true" [id]="cpntID" (change)="onChange($event)" multiple="multiple" [accept]="accepted">
+        <ng-content *ngIf="!hasFiles()" select="uploader-without-file" class="uploaderWithoutFile"></ng-content>
+        <ng-content *ngIf="hasFiles()"select="uploader-with-file" class="uploaderWithFile"></ng-content>
+    </div>
+    `,
 })
 export class UploaderComponent {
 
