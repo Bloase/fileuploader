@@ -32,3 +32,7 @@ npm install fileuploader --save
 - `mFile` (`File`) : holds the single file uploaded, used when multiple is set to false
 - `encoded` (`string[]`) : holds the base64 of all files uploaded to the component, empty if encode = false
 - `failed` (`string[]`) : holds the names of all files that failed to upload;
+
+###Snipets
+
+More information regarding the template can be found in the snipets folder, there you will find an html containing the basic template
