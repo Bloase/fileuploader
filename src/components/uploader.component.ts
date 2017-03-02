@@ -27,8 +27,12 @@ import * as JSZip from 'jszip';
     template:`
     <div class="uploadContainer" [style.outlineColor]="dragging ? 'red' : '#ccc'" fileDropDirective (fileOver)="handleFileOver($event)" (onFileDrop)="handleFileLoad($event)" [ngStyle]="setStyles()">
         <input type="file" #input [hidden]="true" [id]="cpntID" (change)="onChange($event)" multiple="multiple" [accept]="accepted">
-        <ng-content *ngIf="!hasFiles()" select="uploader-without-file" class="uploaderWithoutFile"></ng-content>
-        <ng-content *ngIf="hasFiles()"select="uploader-with-file" class="uploaderWithFile"></ng-content>
+        <div *ngIf="!hasFiles()">
+            <ng-content select="uploader-without-file" class="uploaderWithoutFile"></ng-content>
+        </div>
+        <div *ngIf="hasFiles()">
+            <ng-content select="uploader-with-file" class="uploaderWithFile"></ng-content>
+        </div>
     </div>
     `,
 })
@@ -42,6 +46,8 @@ export class UploaderComponent {
     @Input() looks: any;
     @Input() multiple: boolean = true;
     @Input() encode: boolean = false;
+    @Input() invalidFilemsg: string = 'Invalid File';
+    @Input() invalidFormatmsg: string = 'Invalid Format!'; 
     @Output() results: EventEmitter<any> = new EventEmitter();
     @Output() fail: EventEmitter<any> = new EventEmitter();
 
@@ -73,7 +79,6 @@ export class UploaderComponent {
         this.dragging = false;
         if (files.length > 0) {
 
-            
 
             if (this.type === 'image') {
                 let file = files[0];
@@ -82,10 +87,21 @@ export class UploaderComponent {
                 this.handleInvoiceLoad(files);
             } else {
                 if(this.multiple) {
-
+                    this.loadMultiple(files);
                 } else {
                     this.loadSingle(files[0]);
                 }
+            }
+            if(this.failed.length > 0) {
+                let str = this.invalidFilemsg +': ';
+                while (this.failed.length > 0) {
+                    str += this.failed.pop();
+                    if (this.failed.length > 0) {
+                        str += ', ';
+                    }
+                }
+                this.fail.emit(str);
+                alert(str);
             }
         }
     }
@@ -114,7 +130,7 @@ export class UploaderComponent {
             reader.readAsDataURL(file);
             this.files.push(file);
         } else {
-            alert('Formato Inválido!');
+            alert(this.invalidFormatmsg);
             return;
         }
     }
@@ -124,6 +140,9 @@ export class UploaderComponent {
             if(file.size > this.maxSize) {
                 return;
             }
+        }
+        if(!this.matchesExtension(file)){
+            return;
         }
         this.mFile = file;
         if(this.encode) {
@@ -142,6 +161,10 @@ export class UploaderComponent {
                         this.failed.push(file.name);
                         continue;
                     }
+                }
+                if(!this.matchesExtension(file)) {
+                    this.failed.push(file.name);
+                    continue;
                 }
                 this.files.push(file);
                 if(this.encode) {
@@ -200,7 +223,7 @@ export class UploaderComponent {
                 this.results.emit(this.files);
             }
             if (this.failed.length > 0) {
-                let str = 'Arquivos inválidos: ';
+                let str = this.invalidFilemsg +': ';
                 while (this.failed.length > 0) {
                     str += this.failed.pop();
                     if (this.failed.length > 0) {
@@ -219,6 +242,17 @@ export class UploaderComponent {
             return 1;
         }
         return 0;
+    }
+
+    private matchesExtension(file: File): boolean {
+        if(this.accepted.length === 0) {
+            return true;
+        }
+        let ext = file.name.toLowerCase().split('.').pop();
+        if(this.accepted.indexOf(ext) !== -1) {
+            return true;
+        }
+        return false;
     }
 
     _handleReaderLoaded(e: any) {

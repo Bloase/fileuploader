@@ -18,6 +18,8 @@ npm install fileuploader --save
 - `maxSize` (`number`) - the maximum size a file can have to be allowed, expressed in bytes i.e: 1000 = 1 kb
 - `multiple` (`boolean`) - if the component will take multiple files, default is true
 - `encode` (`boolean`) - if the component will generate a base64 string of the uploaded files, default false
+- `invalidFilemsg` (`string`) - used to show the alerts for files that failed to load, default is "Invalid File", ": " is added automatically
+- `invalidFormatmsg` (`string`) - used to show the alerts for invalid format, default is "Invalid Format", used for images mainly
 
 ###Outputs
 
