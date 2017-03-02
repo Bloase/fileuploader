@@ -33,7 +33,7 @@ npm install fileuploader --save
 - `encoded` (`string[]`) : holds the base64 of all files uploaded to the component, empty if encode = false
 - `failed` (`string[]`) : holds the names of all files that failed to upload;
 
-###Snipets
+###Snippets
 
 Below is an example of a basic template, it can also be found in the snippets folder;
 
