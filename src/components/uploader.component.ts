@@ -12,6 +12,8 @@ import * as JSZip from 'jszip';
             outline: dotted 3px #ccc;
             cursor: pointer;
             height: 100%;
+            max-height: 100%;
+            overflow-y:auto;
         }
 
         .uploaderWithoutFile {
