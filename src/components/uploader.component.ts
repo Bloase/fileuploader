@@ -150,7 +150,7 @@ export class UploaderComponent {
         if(this.encode) {
             this.getBase64(file);
         }
-        let res;
+        let res: any;
         res.msg = 'loaded file';
         res.file = this.mFile;
         this.results.emit(res);
@@ -177,7 +177,7 @@ export class UploaderComponent {
                     this.getBase64(file);
                 }
             }
-            let res;
+            let res: any;
             res.msg = 'loaded files';
             res.files = this.files;
             this.results.emit(res);
