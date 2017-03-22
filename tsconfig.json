@@ -1,18 +1,19 @@
 {
     "compilerOptions": {
-        "noImplicitAny": true,
+        "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
-        "target": "ES5",
-        "emitDecoratorMetadata": true,
-        "outDir": "dist/",
-        "experimentalDecorators": true,
         "sourceMap": true,
-        "declaration": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "lib": [
             "es2015",
             "dom"
-        ]
+        ],
+        "declaration": true,
+        "outDir": "dist/",
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true
     },
     "include": [
         "src"

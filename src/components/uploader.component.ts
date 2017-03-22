@@ -150,6 +150,10 @@ export class UploaderComponent {
         if(this.encode) {
             this.getBase64(file);
         }
+        let res;
+        res.msg = 'loaded file';
+        res.file = this.mFile;
+        this.results.emit(res);
     }
 
     loadMultiple(files: any) {
@@ -173,6 +177,10 @@ export class UploaderComponent {
                     this.getBase64(file);
                 }
             }
+            let res;
+            res.msg = 'loaded files';
+            res.files = this.files;
+            this.results.emit(res);
         }
     }
 
