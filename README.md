@@ -1,16 +1,16 @@
 # fileuploader
 File uploader component in Angular2 
 
-##Installation
+## Installation
 
 recommended way to install is through [npm](https://www.npmjs.com/package/fileuploader) package manager using the command: 
 ```bash
 npm install fileuploader --save
 ```
 
-##Documentation
+## Documentation
 
-###Inputs
+### Inputs
 
 - `type` (`string`) - used to identify how the files will be handled, currently only image has particular handling
 - `cpntID` (`string`) - the id of the component, used to facilitate testing
@@ -21,19 +21,19 @@ npm install fileuploader --save
 - `invalidFilemsg` (`string`) - used to show the alerts for files that failed to load, default is "Invalid File", ": " is added automatically
 - `invalidFormatmsg` (`string`) - used to show the alerts for invalid format, default is "Invalid Format", used for images mainly
 
-###Outputs
+### Outputs
 
 - `results` : currently only used for image type inputs
 - `fail` : A string containing the names of all files that couldn't be uplaoded, normally caused if the file is over the maxSize
 
-###Fields
+### Fields
 
 - `files` (`File[]`) : holds the files uploaded to the component, used if the multiple input is set to true
 - `mFile` (`File`) : holds the single file uploaded, used when multiple is set to false
 - `encoded` (`string[]`) : holds the base64 of all files uploaded to the component, empty if encode = false
 - `failed` (`string[]`) : holds the names of all files that failed to upload;
 
-###Snippets
+### Snippets
 
 Below is an example of a basic template, it can also be found in the snippets folder;
 
