@@ -316,7 +316,7 @@ export class UploaderComponent {
         }
     }
 
-    public downloadSingleFile(encoded?: boolean) {
+    public downloadSingleFile(name?:string, encoded?: boolean) {
 
         if ((encoded && this.encoded.length > 0) || (this.mFile)) {
             let downloadSingle = document.createElement('a');
@@ -333,7 +333,7 @@ export class UploaderComponent {
         }
     }
 
-    public downloadFromList(index: number, encoded?: boolean) {
+    public downloadFromList(index: number, name?:string, encoded?: boolean) {
         if ((encoded && this.encoded && index < this.encoded.length) || (this.files && index < this.files.length)) {
             let download = document.createElement('a');
             if (encoded) {

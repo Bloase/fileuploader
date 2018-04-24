@@ -1,6 +1,6 @@
 {
   "name": "fileuploader",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "An angular2 component for files upload",
   "scripts": {
     "tsc": "tsc"
