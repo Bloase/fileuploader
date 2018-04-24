@@ -326,7 +326,7 @@ export class UploaderComponent {
                 let url = window.URL.createObjectURL(this.mFile);
                 downloadSingle.href = url;
             }
-            downloadSingle.download = this.mFile.name;
+            downloadSingle.download = name ? name : this.mFile.name;
             document.body.appendChild(downloadSingle);
             downloadSingle.click();
             document.body.removeChild(downloadSingle);
@@ -342,7 +342,7 @@ export class UploaderComponent {
                 let url = window.URL.createObjectURL(this.files[index]);
                 download.href = url;
             }
-            download.download = this.mFile.name;
+            download.download = name ? name : this.files[index].name;
             document.body.appendChild(download);
             download.click();
             document.body.removeChild(download);
