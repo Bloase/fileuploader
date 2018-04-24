@@ -316,4 +316,29 @@ export class UploaderComponent {
         }
     }
 
+    public downloadSingleFile() {
+
+        if (this.mFile) {
+            let downloadSingle = document.createElement('a');
+            let url = window.URL.createObjectURL(this.mFile);
+            downloadSingle.href = url;
+            downloadSingle.download = this.mFile.name;
+            document.body.appendChild(downloadSingle);
+            downloadSingle.click();
+            document.body.removeChild(downloadSingle);
+        }
+    }
+
+    public downloadFromList(index: number) {
+        if (this.files && index < this.files.length) {
+            let downloadSingle = document.createElement('a');
+            let url = window.URL.createObjectURL(this.files[index]);
+            downloadSingle.href = url;
+            downloadSingle.download = this.mFile.name;
+            document.body.appendChild(downloadSingle);
+            downloadSingle.click();
+            document.body.removeChild(downloadSingle);
+        }
+    }
+
 }
