@@ -316,12 +316,16 @@ export class UploaderComponent {
         }
     }
 
-    public downloadSingleFile() {
+    public downloadSingleFile(encoded?: boolean) {
 
-        if (this.mFile) {
+        if ((encoded && this.encoded.length > 0) || (this.mFile)) {
             let downloadSingle = document.createElement('a');
-            let url = window.URL.createObjectURL(this.mFile);
-            downloadSingle.href = url;
+            if (encoded) {
+                downloadSingle.setAttribute('href', 'application/octet-stream;base64,'+encoded[0]);
+            } else {
+                let url = window.URL.createObjectURL(this.mFile);
+                downloadSingle.href = url;
+            }
             downloadSingle.download = this.mFile.name;
             document.body.appendChild(downloadSingle);
             downloadSingle.click();
@@ -329,15 +333,19 @@ export class UploaderComponent {
         }
     }
 
-    public downloadFromList(index: number) {
-        if (this.files && index < this.files.length) {
-            let downloadSingle = document.createElement('a');
-            let url = window.URL.createObjectURL(this.files[index]);
-            downloadSingle.href = url;
-            downloadSingle.download = this.mFile.name;
-            document.body.appendChild(downloadSingle);
-            downloadSingle.click();
-            document.body.removeChild(downloadSingle);
+    public downloadFromList(index: number, encoded?: boolean) {
+        if ((encoded && this.encoded && index < this.encoded.length) || (this.files && index < this.files.length)) {
+            let download = document.createElement('a');
+            if (encoded) {
+                download.setAttribute('href', 'application/octet-stream;base64,'+encoded[index]);
+            } else {
+                let url = window.URL.createObjectURL(this.files[index]);
+                download.href = url;
+            }
+            download.download = this.mFile.name;
+            document.body.appendChild(download);
+            download.click();
+            document.body.removeChild(download);
         }
     }
 
