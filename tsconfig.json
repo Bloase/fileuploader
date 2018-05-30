@@ -20,5 +20,11 @@
     ],
     "exclude": [
         "node_modules"
-    ]
+    ],
+    "angularCompilerOptions": {
+        "skipTemplateCodegen": true,
+        "skipMetadataEmit": false,
+        "strictMetadataEmit": true,
+        "annotationsAs": "decorators"
+    }
 }

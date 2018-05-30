@@ -4,9 +4,21 @@ import { CommonModule } from '@angular/common';
 import { FileDropDirective, UploaderComponent, UploaderWithFileComponent, UploaderWithoutFileComponent } from './index';
 
 @NgModule({
-    imports: [CommonModule],
-    declarations: [FileDropDirective, UploaderComponent, UploaderWithFileComponent, UploaderWithoutFileComponent],
-    exports: [FileDropDirective, UploaderComponent, UploaderWithFileComponent, UploaderWithoutFileComponent]
+    imports: [
+        CommonModule
+    ],
+    declarations: [
+        FileDropDirective,
+        UploaderComponent,
+        UploaderWithFileComponent,
+        UploaderWithoutFileComponent
+    ],
+    exports: [
+        FileDropDirective,
+        UploaderComponent,
+        UploaderWithFileComponent,
+        UploaderWithoutFileComponent
+    ]
 })
 
 export class FileUploaderModule { }
